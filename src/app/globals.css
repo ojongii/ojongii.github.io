@@ -19,8 +19,60 @@
 	}
 }
 
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+}
+
 body {
 	background: var(--background);
 	color: var(--foreground);
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--c-muted, #4c566a) transparent;
+}
+
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--c-muted, #4c566a);
+	border-radius: 9999px;
+}
+
+.tab-shape::before,
+.tab-shape::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	width: 10px;
+	height: 10px;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 150ms ease;
+}
+
+.tab-shape.tab-notch::before,
+.tab-shape.tab-notch::after {
+	opacity: 1;
+}
+
+.tab-shape::before {
+	left: -10px;
+	background: radial-gradient(circle at top left, transparent 10px, var(--c-base, #1e222a) 10px);
+}
+
+.tab-shape::after {
+	right: -10px;
+	background: radial-gradient(circle at top right, transparent 10px, var(--c-base, #1e222a) 10px);
 }
